@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 180">
+  <defs>
+    <!-- Glow filters -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow-strong">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Ambient radial glow -->
+    <radialGradient id="ambient-glow" cx="200" cy="90" r="70" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#DA1710" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#DA1710" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Input paths (left lines to hexagon left edge ~180) -->
+    <path id="input-path-1" d="M 60,55 L 150,55 L 160,65 L 180,72" fill="none"/>
+    <path id="input-path-2" d="M 60,75 L 150,75 L 160,78 L 180,82" fill="none"/>
+    <path id="input-path-3" d="M 60,100 L 150,100 L 160,98 L 180,95" fill="none"/>
+    <path id="input-path-4" d="M 60,130 L 150,130 L 160,118 L 180,108" fill="none"/>
+
+    <!-- Output paths (hexagon right edge ~220 to right side) -->
+    <path id="output-path-1" d="M 220,75 L 235,68 L 250,60 L 340,60" fill="none"/>
+    <path id="output-path-2" d="M 220,90 L 235,90 L 250,90 L 340,90" fill="none"/>
+    <path id="output-path-3" d="M 220,105 L 235,112 L 250,120 L 340,120" fill="none"/>
+  </defs>
+
+  <!-- Ambient glow ellipse behind hexagon -->
+  <ellipse cx="200" cy="90" rx="70" ry="55" fill="url(#ambient-glow)"/>
+
+  <!-- ======== INPUT STREAMS (left side, chaotic spacing) ======== -->
+  <line x1="60" y1="55" x2="150" y2="55" stroke="#DA1710" stroke-opacity="0.4" stroke-width="1.5"/>
+  <line x1="60" y1="75" x2="150" y2="75" stroke="#DA1710" stroke-opacity="0.5" stroke-width="1.5"/>
+  <line x1="60" y1="100" x2="150" y2="100" stroke="#DA1710" stroke-opacity="0.6" stroke-width="1.5"/>
+  <line x1="60" y1="130" x2="150" y2="130" stroke="#DA1710" stroke-opacity="0.45" stroke-width="1.5"/>
+
+  <!-- ======== CONNECTING LINES: Input → Hexagon (PCB-style bends) ======== -->
+  <path d="M 150,55 L 160,55 L 168,65 L 180,72" stroke="#DA1710" stroke-opacity="0.5" stroke-width="1.5" fill="none"/>
+  <path d="M 150,75 L 160,75 L 168,78 L 180,82" stroke="#DA1710" stroke-opacity="0.5" stroke-width="1.5" fill="none"/>
+  <path d="M 150,100 L 160,100 L 168,98 L 180,95" stroke="#DA1710" stroke-opacity="0.5" stroke-width="1.5" fill="none"/>
+  <path d="M 150,130 L 160,130 L 168,118 L 180,108" stroke="#DA1710" stroke-opacity="0.5" stroke-width="1.5" fill="none"/>
+
+  <!-- ======== CLASSIFICATION HEXAGON (center) ======== -->
+  <!-- Regular hexagon centered at 200,90, ~40px wide (radius 20) -->
+  <!-- Points: flat-top hexagon -->
+  <polygon
+    points="180,90 190,72.7 210,72.7 220,90 210,107.3 190,107.3"
+    stroke="#DA1710" stroke-width="2" fill="#DA1710" fill-opacity="0.05"
+    filter="url(#glow-strong)">
+    <animate attributeName="stroke-opacity" values="0.7;1.0;0.7" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="fill-opacity" values="0.03;0.08;0.03" dur="2s" repeatCount="indefinite"/>
+  </polygon>
+
+  <!-- Inner hexagon detail -->
+  <polygon
+    points="186,90 193,78 207,78 214,90 207,102 193,102"
+    stroke="#DA1710" stroke-width="0.8" stroke-opacity="0.3" fill="none">
+    <animate attributeName="stroke-opacity" values="0.2;0.5;0.2" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+  </polygon>
+
+  <!-- Scanning line across hexagon -->
+  <line y1="73" y2="107" stroke="#ffffff" stroke-opacity="0.9" stroke-width="1" filter="url(#glow)">
+    <animate attributeName="x1" values="180;220;180" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="x2" values="180;220;180" dur="2s" repeatCount="indefinite"/>
+  </line>
+
+  <!-- ======== CONNECTING LINES: Hexagon → Output (PCB-style bends) ======== -->
+  <path d="M 220,78 L 230,72 L 240,65 L 250,60" stroke="#DA1710" stroke-opacity="0.5" stroke-width="1.5" fill="none"/>
+  <path d="M 220,90 L 230,90 L 240,90 L 250,90" stroke="#DA1710" stroke-opacity="0.5" stroke-width="1.5" fill="none"/>
+  <path d="M 220,102 L 230,108 L 240,115 L 250,120" stroke="#DA1710" stroke-opacity="0.5" stroke-width="1.5" fill="none"/>
+
+  <!-- ======== OUTPUT STREAMS (right side, evenly spaced) ======== -->
+  <line x1="250" y1="60" x2="310" y2="60" stroke="#DA1710" stroke-opacity="0.8" stroke-width="1.5"/>
+  <line x1="250" y1="90" x2="310" y2="90" stroke="#DA1710" stroke-opacity="0.8" stroke-width="1.5"/>
+  <line x1="250" y1="120" x2="310" y2="120" stroke="#DA1710" stroke-opacity="0.8" stroke-width="1.5"/>
+
+  <!-- Output tags (rounded rectangles at end of output lines) -->
+  <rect x="310" y="55" width="20" height="10" rx="3" ry="3" stroke="#DA1710" stroke-width="1" fill="#DA1710" fill-opacity="0.15" filter="url(#glow)">
+    <animate attributeName="fill-opacity" values="0.10;0.25;0.10" dur="3s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="310" y="85" width="20" height="10" rx="3" ry="3" stroke="#DA1710" stroke-width="1" fill="#DA1710" fill-opacity="0.15" filter="url(#glow)">
+    <animate attributeName="fill-opacity" values="0.10;0.25;0.10" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+  </rect>
+  <rect x="310" y="115" width="20" height="10" rx="3" ry="3" stroke="#DA1710" stroke-width="1" fill="#DA1710" fill-opacity="0.15" filter="url(#glow)">
+    <animate attributeName="fill-opacity" values="0.10;0.25;0.10" dur="3s" repeatCount="indefinite" begin="1s"/>
+  </rect>
+
+  <!-- ======== ANIMATED DATA DOTS — INPUT STREAMS ======== -->
+  <!-- Input dot 1 (fastest) -->
+  <circle r="2" fill="#DA1710" filter="url(#glow)">
+    <animateMotion dur="3s" repeatCount="indefinite">
+      <mpath href="#input-path-1"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="3s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Input dot 2 -->
+  <circle r="2" fill="#DA1710" filter="url(#glow)">
+    <animateMotion dur="3.5s" repeatCount="indefinite" begin="0.4s">
+      <mpath href="#input-path-2"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="3.5s" repeatCount="indefinite" begin="0.4s"/>
+  </circle>
+
+  <!-- Input dot 3 -->
+  <circle r="2" fill="#DA1710" filter="url(#glow)">
+    <animateMotion dur="4s" repeatCount="indefinite" begin="0.8s">
+      <mpath href="#input-path-3"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="4s" repeatCount="indefinite" begin="0.8s"/>
+  </circle>
+
+  <!-- Input dot 4 (slowest) -->
+  <circle r="2" fill="#DA1710" filter="url(#glow)">
+    <animateMotion dur="4.5s" repeatCount="indefinite" begin="1.2s">
+      <mpath href="#input-path-4"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="4.5s" repeatCount="indefinite" begin="1.2s"/>
+  </circle>
+
+  <!-- ======== ANIMATED DATA DOTS — OUTPUT STREAMS ======== -->
+  <!-- Output dot 1 -->
+  <circle r="2" fill="#DA1710" filter="url(#glow)">
+    <animateMotion dur="3s" repeatCount="indefinite" begin="0s">
+      <mpath href="#output-path-1"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="3s" repeatCount="indefinite" begin="0s"/>
+  </circle>
+
+  <!-- Output dot 2 -->
+  <circle r="2" fill="#DA1710" filter="url(#glow)">
+    <animateMotion dur="3s" repeatCount="indefinite" begin="1s">
+      <mpath href="#output-path-2"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="3s" repeatCount="indefinite" begin="1s"/>
+  </circle>
+
+  <!-- Output dot 3 -->
+  <circle r="2" fill="#DA1710" filter="url(#glow)">
+    <animateMotion dur="3s" repeatCount="indefinite" begin="2s">
+      <mpath href="#output-path-3"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="3s" repeatCount="indefinite" begin="2s"/>
+  </circle>
+
+  <!-- ======== EXTRA AMBIENT PARTICLES (subtle) ======== -->
+  <!-- Tiny dots that flicker near the hexagon for energy feel -->
+  <circle cx="175" cy="80" r="1" fill="#DA1710" opacity="0">
+    <animate attributeName="opacity" values="0;0.6;0" dur="2.5s" repeatCount="indefinite" begin="0.3s"/>
+  </circle>
+  <circle cx="225" cy="85" r="1" fill="#DA1710" opacity="0">
+    <animate attributeName="opacity" values="0;0.5;0" dur="2.8s" repeatCount="indefinite" begin="1.1s"/>
+  </circle>
+  <circle cx="195" cy="110" r="1" fill="#DA1710" opacity="0">
+    <animate attributeName="opacity" values="0;0.4;0" dur="3.2s" repeatCount="indefinite" begin="0.7s"/>
+  </circle>
+  <circle cx="210" cy="70" r="1" fill="#DA1710" opacity="0">
+    <animate attributeName="opacity" values="0;0.5;0" dur="2.1s" repeatCount="indefinite" begin="1.5s"/>
+  </circle>
+</svg>

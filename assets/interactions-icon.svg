@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 180">
+  <defs>
+    <!-- Glow filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Stronger glow for pulse rings -->
+    <filter id="glow-soft">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Ambient radial gradient -->
+    <radialGradient id="ambient-glow" cx="200" cy="90" r="80" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ff9800" stop-opacity="0.2"/>
+      <stop offset="60%" stop-color="#ff9800" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#ff9800" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Ambient glow background -->
+  <circle cx="200" cy="90" r="80" fill="url(#ambient-glow)"/>
+
+  <!-- ===================== -->
+  <!-- EXPANDING PULSE RINGS -->
+  <!-- ===================== -->
+
+  <!-- Pulse ring 1 -->
+  <circle cx="200" cy="90" r="15" fill="none" stroke="#ff9800" stroke-width="1" opacity="0.6" filter="url(#glow-soft)">
+    <animate attributeName="r" from="15" to="50" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" from="0.6" to="0" dur="3s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Pulse ring 2 (offset) -->
+  <circle cx="200" cy="90" r="15" fill="none" stroke="#ff9800" stroke-width="1" opacity="0.6" filter="url(#glow-soft)">
+    <animate attributeName="r" from="15" to="50" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" from="0.6" to="0" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- ==================== -->
+  <!-- 4 ORBITAL ARC SEGMENTS -->
+  <!-- ==================== -->
+
+  <!-- Arc 1: radius 35, 90° span, opacity 0.3, speed 20s -->
+  <g>
+    <path d="M 200 55 A 35 35 0 0 1 235 90" fill="none" stroke="#ff9800" stroke-width="1.5" opacity="0.3" stroke-linecap="round">
+      <animateTransform attributeName="transform" type="rotate" from="0 200 90" to="360 200 90" dur="20s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <!-- Arc 2: radius 55, 120° span, opacity 0.5, speed 25s (reverse) -->
+  <g>
+    <path d="M 200 35 A 55 55 0 0 1 247.5 117.5" fill="none" stroke="#ff9800" stroke-width="1.8" opacity="0.5" stroke-linecap="round">
+      <animateTransform attributeName="transform" type="rotate" from="360 200 90" to="0 200 90" dur="25s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <!-- Arc 3: radius 75, 150° span, opacity 0.7, speed 30s -->
+  <g>
+    <path d="M 200 15 A 75 75 0 0 1 137.5 155" fill="none" stroke="#ff9800" stroke-width="1.8" opacity="0.7" stroke-linecap="round">
+      <animateTransform attributeName="transform" type="rotate" from="0 200 90" to="360 200 90" dur="30s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <!-- Arc 4: radius 95, 70° span, opacity 0.9, speed 35s (reverse) -->
+  <g>
+    <path d="M 266.6 30.3 A 95 95 0 0 1 295 90" fill="none" stroke="#ff9800" stroke-width="2" opacity="0.9" stroke-linecap="round">
+      <animateTransform attributeName="transform" type="rotate" from="360 200 90" to="0 200 90" dur="35s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <!-- ======================== -->
+  <!-- CONVERGENCE LINES + DOTS -->
+  <!-- ======================== -->
+
+  <!-- Signal dot 1 — on arc 1 orbit (radius ~35), pulsing at 2s -->
+  <g>
+    <animateTransform attributeName="transform" type="rotate" from="0 200 90" to="360 200 90" dur="20s" repeatCount="indefinite"/>
+    <!-- Convergence line 1 -->
+    <line x1="224" y1="65" x2="200" y2="90" stroke="#ff9800" stroke-width="0.5" opacity="0.15">
+      <animate attributeName="opacity" values="0.05;0.2;0.05" dur="2s" repeatCount="indefinite"/>
+    </line>
+    <!-- Dot 1 -->
+    <circle cx="224" cy="65" r="3" fill="#ff9800" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Signal dot 2 — on arc 2 orbit (radius ~55), pulsing at 2.5s -->
+  <g>
+    <animateTransform attributeName="transform" type="rotate" from="360 200 90" to="0 200 90" dur="25s" repeatCount="indefinite"/>
+    <!-- Convergence line 2 -->
+    <line x1="243" y1="50" x2="200" y2="90" stroke="#ff9800" stroke-width="0.5" opacity="0.15">
+      <animate attributeName="opacity" values="0.05;0.2;0.05" dur="2.5s" repeatCount="indefinite"/>
+    </line>
+    <!-- Dot 2 -->
+    <circle cx="243" cy="50" r="3" fill="#ff9800" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.4;1;0.4" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Signal dot 3 — on arc 3 orbit (radius ~75), pulsing at 3s -->
+  <g>
+    <animateTransform attributeName="transform" type="rotate" from="0 200 90" to="360 200 90" dur="30s" repeatCount="indefinite"/>
+    <!-- Convergence line 3 -->
+    <line x1="155" y1="140" x2="200" y2="90" stroke="#ff9800" stroke-width="0.5" opacity="0.15">
+      <animate attributeName="opacity" values="0.05;0.2;0.05" dur="3s" repeatCount="indefinite"/>
+    </line>
+    <!-- Dot 3 -->
+    <circle cx="155" cy="140" r="3" fill="#ff9800" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.4;1;0.4" dur="3s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Signal dot 4 — on arc 4 orbit (radius ~95), pulsing at 3.5s -->
+  <g>
+    <animateTransform attributeName="transform" type="rotate" from="360 200 90" to="0 200 90" dur="35s" repeatCount="indefinite"/>
+    <!-- Convergence line 4 -->
+    <line x1="280" y1="55" x2="200" y2="90" stroke="#ff9800" stroke-width="0.5" opacity="0.15">
+      <animate attributeName="opacity" values="0.05;0.2;0.05" dur="3.5s" repeatCount="indefinite"/>
+    </line>
+    <!-- Dot 4 -->
+    <circle cx="280" cy="55" r="3" fill="#ff9800" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.4;1;0.4" dur="3.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Signal dot 5 — free-floating on arc 3 orbit, opposite side, pulsing at 4s -->
+  <g>
+    <animateTransform attributeName="transform" type="rotate" from="180 200 90" to="540 200 90" dur="30s" repeatCount="indefinite"/>
+    <!-- Convergence line 5 -->
+    <line x1="260" y1="30" x2="200" y2="90" stroke="#ff9800" stroke-width="0.5" opacity="0.15">
+      <animate attributeName="opacity" values="0.05;0.2;0.05" dur="4s" repeatCount="indefinite"/>
+    </line>
+    <!-- Dot 5 -->
+    <circle cx="260" cy="30" r="3" fill="#ff9800" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.4;1;0.4" dur="4s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- ============== -->
+  <!-- CENTRAL FIGURE -->
+  <!-- ============== -->
+
+  <!-- Shoulder arc -->
+  <path d="M 185 108 Q 192 115 200 116 Q 208 115 215 108" fill="none" stroke="#ff9800" stroke-width="2" opacity="0.6" stroke-linecap="round"/>
+
+  <!-- Neck line -->
+  <line x1="200" y1="102" x2="200" y2="108" stroke="#ff9800" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Head with glow -->
+  <circle cx="200" cy="90" r="12" fill="#ff9800" filter="url(#glow)" opacity="0.95"/>
+
+  <!-- Inner head highlight -->
+  <circle cx="198" cy="87" r="4" fill="#ffffff" opacity="0.2"/>
+</svg>

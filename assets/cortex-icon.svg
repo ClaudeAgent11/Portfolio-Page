@@ -1,0 +1,199 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 180">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow-strong">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow-soft">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <radialGradient id="halo" cx="200" cy="88" r="90" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00bcd4" stop-opacity="0.10"/>
+      <stop offset="60%" stop-color="#00bcd4" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#00bcd4" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Brain silhouette path (top-down view with lobes) -->
+    <path id="brain-shape" d="
+      M 200,10
+      C 195,10 185,8 175,14
+      C 162,22 152,18 145,25
+      C 136,33 132,42 131,52
+      C 130,58 128,62 126,68
+      C 123,78 124,88 126,96
+      C 128,104 125,110 127,118
+      C 129,126 134,136 142,144
+      C 150,152 160,158 172,162
+      C 184,166 192,168 200,168
+      C 208,168 216,166 228,162
+      C 240,158 250,152 258,144
+      C 266,136 271,126 273,118
+      C 275,110 272,104 274,96
+      C 276,88 277,78 274,68
+      C 272,62 270,58 269,52
+      C 268,42 264,33 255,25
+      C 248,18 238,22 225,14
+      C 215,8 205,10 200,10
+      Z"/>
+
+    <!-- Clip path using brain shape -->
+    <clipPath id="brain-clip">
+      <use href="#brain-shape"/>
+    </clipPath>
+
+    <!-- Pulse travel paths along organic curves -->
+    <path id="pulse-path-left" d="
+      M 200,18 C 198,26 192,30 185,35 C 178,40 168,42 160,50
+      C 152,58 148,64 145,72 C 142,80 144,84 148,88
+      C 152,92 156,96 158,105 C 160,114 164,118 170,125
+      C 176,132 180,138 185,145 C 190,152 195,156 200,158
+      C 195,150 188,140 185,130 C 182,120 178,112 172,105
+      C 166,98 162,90 160,82 C 158,74 162,66 170,58
+      C 178,50 188,42 195,35 C 198,30 200,25 200,18" fill="none"/>
+    <path id="pulse-path-right" d="
+      M 200,18 C 202,26 208,30 215,35 C 222,40 232,42 240,50
+      C 248,58 252,64 255,72 C 258,80 256,84 252,88
+      C 248,92 244,96 242,105 C 240,114 236,118 230,125
+      C 224,132 220,138 215,145 C 210,152 205,156 200,158
+      C 205,150 212,140 215,130 C 218,120 222,112 228,105
+      C 234,98 238,90 240,82 C 242,74 238,66 230,58
+      C 222,50 212,42 205,35 C 202,30 200,25 200,18" fill="none"/>
+  </defs>
+
+  <!-- Ambient halo -->
+  <circle cx="200" cy="88" r="90" fill="url(#halo)"/>
+
+  <!-- ============================================ -->
+  <!-- BRAIN OUTLINE (visible silhouette)           -->
+  <!-- ============================================ -->
+  <use href="#brain-shape" fill="rgba(0,188,212,0.03)" stroke="#00bcd4" stroke-width="1.5" opacity="0.25" filter="url(#glow-soft)"/>
+
+  <!-- Central fissure line (curved) -->
+  <path d="M 200,10 C 200,14 199,20 200,30" fill="none" stroke="#00bcd4" stroke-width="1" opacity="0.20"/>
+
+  <!-- ============================================ -->
+  <!-- CLIPPED CONTENT (all traces inside brain)    -->
+  <!-- ============================================ -->
+  <g clip-path="url(#brain-clip)">
+
+    <!-- LEFT HEMISPHERE ORGANIC TRACES -->
+    <!-- Frontal lobe -->
+    <path d="M 200,18 C 196,24 190,28 182,35" fill="none" stroke="#00bcd4" stroke-width="2" opacity="0.65" filter="url(#glow-soft)"/>
+    <path d="M 182,35 C 174,40 166,42 155,50" fill="none" stroke="#00bcd4" stroke-width="2" opacity="0.55" filter="url(#glow-soft)"/>
+    <path d="M 188,28 C 180,28 174,32 170,42" fill="none" stroke="#00bcd4" stroke-width="1.5" opacity="0.30"/>
+    <!-- Temporal lobe -->
+    <path d="M 155,50 C 150,56 148,62 145,68" fill="none" stroke="#00bcd4" stroke-width="1.8" opacity="0.50" filter="url(#glow-soft)"/>
+    <path d="M 145,68 C 142,76 144,82 150,88" fill="none" stroke="#00bcd4" stroke-width="1.8" opacity="0.45" filter="url(#glow-soft)"/>
+    <path d="M 140,58 C 136,62 134,70 138,78" fill="none" stroke="#00bcd4" stroke-width="1.2" opacity="0.22"/>
+    <!-- Parietal -->
+    <path d="M 150,88 C 154,94 156,100 160,105" fill="none" stroke="#00bcd4" stroke-width="1.8" opacity="0.45" filter="url(#glow-soft)"/>
+    <path d="M 160,105 C 164,112 168,116 172,120" fill="none" stroke="#00bcd4" stroke-width="1.5" opacity="0.40" filter="url(#glow-soft)"/>
+    <path d="M 148,95 C 142,98 140,106 146,112" fill="none" stroke="#00bcd4" stroke-width="1.2" opacity="0.22"/>
+    <!-- Occipital -->
+    <path d="M 172,120 C 176,128 178,134 182,140" fill="none" stroke="#00bcd4" stroke-width="1.5" opacity="0.35" filter="url(#glow-soft)"/>
+    <path d="M 182,140 C 186,148 192,153 200,155" fill="none" stroke="#00bcd4" stroke-width="1.5" opacity="0.35" filter="url(#glow-soft)"/>
+    <path d="M 165,132 C 160,136 158,142 164,148" fill="none" stroke="#00bcd4" stroke-width="1" opacity="0.18"/>
+
+    <!-- RIGHT HEMISPHERE ORGANIC TRACES (mirror) -->
+    <!-- Frontal lobe -->
+    <path d="M 200,18 C 204,24 210,28 218,35" fill="none" stroke="#00bcd4" stroke-width="2" opacity="0.65" filter="url(#glow-soft)"/>
+    <path d="M 218,35 C 226,40 234,42 245,50" fill="none" stroke="#00bcd4" stroke-width="2" opacity="0.55" filter="url(#glow-soft)"/>
+    <path d="M 212,28 C 220,28 226,32 230,42" fill="none" stroke="#00bcd4" stroke-width="1.5" opacity="0.30"/>
+    <!-- Temporal lobe -->
+    <path d="M 245,50 C 250,56 252,62 255,68" fill="none" stroke="#00bcd4" stroke-width="1.8" opacity="0.50" filter="url(#glow-soft)"/>
+    <path d="M 255,68 C 258,76 256,82 250,88" fill="none" stroke="#00bcd4" stroke-width="1.8" opacity="0.45" filter="url(#glow-soft)"/>
+    <path d="M 260,58 C 264,62 266,70 262,78" fill="none" stroke="#00bcd4" stroke-width="1.2" opacity="0.22"/>
+    <!-- Parietal -->
+    <path d="M 250,88 C 246,94 244,100 240,105" fill="none" stroke="#00bcd4" stroke-width="1.8" opacity="0.45" filter="url(#glow-soft)"/>
+    <path d="M 240,105 C 236,112 232,116 228,120" fill="none" stroke="#00bcd4" stroke-width="1.5" opacity="0.40" filter="url(#glow-soft)"/>
+    <path d="M 252,95 C 258,98 260,106 254,112" fill="none" stroke="#00bcd4" stroke-width="1.2" opacity="0.22"/>
+    <!-- Occipital -->
+    <path d="M 228,120 C 224,128 222,134 218,140" fill="none" stroke="#00bcd4" stroke-width="1.5" opacity="0.35" filter="url(#glow-soft)"/>
+    <path d="M 218,140 C 214,148 208,153 200,155" fill="none" stroke="#00bcd4" stroke-width="1.5" opacity="0.35" filter="url(#glow-soft)"/>
+    <path d="M 235,132 C 240,136 242,142 236,148" fill="none" stroke="#00bcd4" stroke-width="1" opacity="0.18"/>
+
+    <!-- CROSS-HEMISPHERE CONNECTIONS (corpus callosum - organic curves) -->
+    <path d="M 182,35 C 190,32 210,32 218,35" fill="none" stroke="#00bcd4" stroke-width="2.5" opacity="0.70" filter="url(#glow-soft)"/>
+    <path d="M 145,68 C 160,62 175,60 200,62 C 225,60 240,62 255,68" fill="none" stroke="#00bcd4" stroke-width="2" opacity="0.50" filter="url(#glow-soft)"/>
+    <path d="M 150,88 C 168,82 185,80 200,82 C 215,80 232,82 250,88" fill="none" stroke="#00bcd4" stroke-width="2.5" opacity="0.70" filter="url(#glow-soft)"/>
+    <path d="M 172,120 C 184,115 195,114 200,114 C 205,114 216,115 228,120" fill="none" stroke="#00bcd4" stroke-width="2" opacity="0.50" filter="url(#glow-soft)"/>
+    <path d="M 182,155 C 190,150 200,148 210,150 C 215,152 218,155 218,155" fill="none" stroke="#00bcd4" stroke-width="2" opacity="0.45" filter="url(#glow-soft)"/>
+
+    <!-- CENTRAL SPINE (organic curve instead of straight line) -->
+    <path d="M 200,18 C 200,30 199,42 200,55 C 201,68 200,78 200,88 C 200,98 201,110 200,125 C 199,140 200,148 200,155" fill="none" stroke="#00bcd4" stroke-width="2.5" opacity="0.60" filter="url(#glow-soft)"/>
+
+    <!-- ============================================ -->
+    <!-- GLOWING NODES (7 total, at trace junctions)  -->
+    <!-- ============================================ -->
+
+    <!-- Node 1: Crown (top center) -->
+    <circle cx="200" cy="18" r="5" fill="#00bcd4" filter="url(#glow-strong)">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="2.2s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- Node 2: Left frontal -->
+    <circle cx="155" cy="50" r="4" fill="#00bcd4" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="1.8s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- Node 3: Right frontal -->
+    <circle cx="245" cy="50" r="4" fill="#00bcd4" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="2.6s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- Node 4: Left temporal -->
+    <circle cx="150" cy="88" r="3" fill="#00bcd4" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="3.0s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- Node 5: Center brain (deep) -->
+    <circle cx="200" cy="88" r="6" fill="#00bcd4" filter="url(#glow-strong)">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="3.4s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- Node 6: Right temporal -->
+    <circle cx="250" cy="88" r="3" fill="#00bcd4" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="3.8s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- Node 7: Brain stem (bottom) -->
+    <circle cx="200" cy="155" r="4" fill="#00bcd4" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="4.2s" repeatCount="indefinite"/>
+    </circle>
+
+  </g>
+
+  <!-- ============================================ -->
+  <!-- TRAVELLING PULSE DOTS                        -->
+  <!-- ============================================ -->
+
+  <!-- Pulse 1: Left hemisphere -->
+  <circle r="2.5" fill="#ffffff" opacity="0.9" filter="url(#glow)">
+    <animateMotion dur="5s" repeatCount="indefinite">
+      <mpath href="#pulse-path-left"/>
+    </animateMotion>
+  </circle>
+
+  <!-- Pulse 2: Right hemisphere -->
+  <circle r="2.5" fill="#ffffff" opacity="0.85" filter="url(#glow)">
+    <animateMotion dur="5.5s" repeatCount="indefinite" begin="1s">
+      <mpath href="#pulse-path-right"/>
+    </animateMotion>
+  </circle>
+
+</svg>
