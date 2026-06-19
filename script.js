@@ -160,7 +160,29 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', highlightActiveLink, { passive: true });
 
   // ============================================================
-  // 7. Case study expand / collapse
+  // 7. AI Skills Library — per-tier toggles
+  // ============================================================
+  document.querySelectorAll('.skills-tier-toggle').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const body = btn.nextElementSibling;
+      if (!body) return;
+
+      const isOpen = body.classList.contains('open');
+
+      if (isOpen) {
+        body.style.maxHeight = '0';
+        body.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      } else {
+        body.classList.add('open');
+        body.style.maxHeight = body.scrollHeight + 'px';
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // ============================================================
+  // 8. Case study expand / collapse
   // ============================================================
   document.querySelectorAll('.case-study-toggle').forEach((btn) => {
     btn.addEventListener('click', () => {

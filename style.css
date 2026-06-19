@@ -1352,6 +1352,251 @@ nav.nav-open .nav-hamburger span:nth-child(3) { transform: translateY(-7px) rota
 }
 
 
+/* --- AI Skills Showcase --- */
+.ai-skills-showcase {
+  margin-top: 60px;
+}
+
+.ai-skills-showcase h3 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
+
+.ai-skills-intro {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.ai-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.ai-skill-card {
+  background: var(--color-bg-dark);
+  border-radius: var(--radius);
+  padding: 28px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ai-skill-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(26, 26, 46, 0.3);
+}
+
+.ai-skill-icon {
+  font-size: 1.5rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.ai-skill-card h4 {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--color-accent);
+  margin-bottom: 8px;
+}
+
+.ai-skill-card p {
+  font-size: 0.88rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.ai-skill-trigger {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  background: rgba(201, 168, 76, 0.1);
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  border-radius: var(--radius-pill);
+  padding: 4px 12px;
+}
+
+/* --- AI Skills Library (Per-Tier Collapsible) --- */
+.ai-skills-library {
+  margin-top: 60px;
+}
+
+.ai-skills-library > h3 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
+
+.skills-tier {
+  background: var(--color-bg-dark);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius);
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.skills-tier:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Tier Toggle Button --- */
+.skills-tier-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 18px 28px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.skills-tier-toggle:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.skills-tier-toggle-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.skills-tier-toggle-icon {
+  display: inline-block;
+  font-size: 0.7rem;
+  color: var(--color-accent);
+  transition: transform 0.3s ease;
+}
+
+.skills-tier-toggle[aria-expanded="true"] .skills-tier-toggle-icon {
+  transform: rotate(90deg);
+}
+
+.skills-tier-toggle-title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.skills-tier-toggle-count {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.03em;
+}
+
+/* --- Tier Badge --- */
+.skills-tier-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(201, 168, 76, 0.15);
+  color: var(--color-accent);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+}
+
+.skills-tier-badge.tier-badge-alt {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* --- Tier Body (collapsible content) --- */
+.skills-tier-body {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+  padding: 0 28px;
+}
+
+.skills-tier-body.open {
+  opacity: 1;
+  padding: 0 28px 24px;
+}
+
+.skills-tier-desc {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 20px;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.skills-tier-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.skills-tier-item {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  align-items: baseline;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.skills-tier-item:last-child {
+  border-bottom: none;
+}
+
+.skills-tier-item code {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--color-accent);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.skills-tier-item p {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.skills-tier-item span {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .skills-tier-toggle {
+    padding: 14px 20px;
+  }
+
+  .skills-tier-toggle-count {
+    display: none;
+  }
+
+  .skills-tier-body {
+    padding: 0 20px;
+  }
+
+  .skills-tier-body.open {
+    padding: 0 20px 20px;
+  }
+
+  .skills-tier-item {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
+
+
 /* ============================================================
    10. WRITING — Coming Soon
    ============================================================ */
